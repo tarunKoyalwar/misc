@@ -1,6 +1,6 @@
 module github.com/tarunKoyalwar/misc
 
-go 1.21.3
+go 1.18
 
 require (
 	github.com/VividCortex/ewma v1.2.0 // indirect
