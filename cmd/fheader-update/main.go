@@ -2,13 +2,14 @@ package main
 
 import (
 	"bufio"
-	"compress/gzip"
 	"flag"
 	"fmt"
 	"io"
 	"os"
 	"strings"
 	"time"
+
+	gzip "github.com/klauspost/pgzip"
 
 	"github.com/schollz/progressbar/v3"
 )
