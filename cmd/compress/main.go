@@ -96,7 +96,7 @@ func main() {
 		// encode
 		writer := gzip.NewWriter(output)
 		defer writer.Close()
-		_, err = io.Copy(writer, inputReader)
+		_, err = io.Copy(io.MultiWriter(writer, pb), inputReader)
 		if err != nil {
 			panic(err)
 		}
