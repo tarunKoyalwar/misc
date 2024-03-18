@@ -28,7 +28,7 @@ func main() {
 	flag.BoolVar(&decode, "decode", false, "decode input file")
 	flag.IntVar(&peek, "peek", 0, "dumps first N bytes of the input file(useful when its compressed)")
 	flag.Parse()
-	if input == "" || output == "" {
+	if input == "" || (output == "" && peek == 0) {
 		flag.PrintDefaults()
 		return
 	}
@@ -59,7 +59,11 @@ func main() {
 
 	if peek > 0 {
 		peekData := make([]byte, peek)
-		n, err := inputReader.Read(peekData)
+		gzipReader, err := gzip.NewReader(inputReader)
+		if err != nil {
+			panic(err)
+		}
+		n, err := gzipReader.Read(peekData)
 		if err != nil {
 			panic(err)
 		}
